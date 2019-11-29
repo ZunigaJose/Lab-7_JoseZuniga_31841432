@@ -2,18 +2,18 @@ package lab.pkg7_josezuniga_31841432;
 
 public class Paradas {
     private String nombreP;
-    private int distancia;
+    private double distancia;
     private double angulo,  x, y;
 
     public Paradas() {
     }
 
-    public Paradas(String nombreP, int distancia, double x, double y, double angulo) {
+    public Paradas(String nombreP, double distancia, double angulo) {
         this.nombreP = nombreP;
         this.distancia = distancia;
-        this.x = x;
-        this.y = y;
         this.angulo = angulo;
+        setX();
+        setY();
     }
     
     public String getNombreP() {
@@ -24,11 +24,11 @@ public class Paradas {
         this.nombreP = nombreP;
     }
 
-    public int getDistancia() {
+    public double getDistancia() {
         return distancia;
     }
 
-    public void setDistancia(int distancia) {
+    public void setDistancia(double distancia) {
         this.distancia = distancia;
         setX();
         setY();

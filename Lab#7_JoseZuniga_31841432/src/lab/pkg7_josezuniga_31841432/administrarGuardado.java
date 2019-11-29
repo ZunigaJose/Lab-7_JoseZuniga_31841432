@@ -41,7 +41,6 @@ public class administrarGuardado {
 
     public void setBuses(ArrayList<Autobus> buses) {
         this.buses = buses;
-        guardarBus();
     }
     
     public Autobus getBus(int pos) {
@@ -50,6 +49,7 @@ public class administrarGuardado {
 
     public void setBus(Autobus bus) {
         this.buses.add(bus);
+        guardarBus();
     }
 
     public Paradas getParada(int pos) {
@@ -180,4 +180,6 @@ public class administrarGuardado {
         } catch (Exception e) {
         }
     }
+    
+    
 }
