@@ -1,6 +1,8 @@
 package lab.pkg7_josezuniga_31841432;
 
-public class Paradas {
+import java.io.Serializable;
+
+public class Paradas implements Serializable{
     private String nombreP;
     private double distancia;
     private double angulo,  x, y;
@@ -58,5 +60,10 @@ public class Paradas {
         this.angulo = angulo;
         setX();
         setY();
+    }
+
+    @Override
+    public String toString() {
+        return nombreP;
     }
 }

@@ -1,9 +1,10 @@
 package lab.pkg7_josezuniga_31841432;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Autobus {
+public class Autobus implements Serializable {
     private int id;
     private String placa;
     private double velocidad;

@@ -1,6 +1,8 @@
 package lab.pkg7_josezuniga_31841432;
 
-public class Estudiante {
+import java.io.Serializable;
+
+public class Estudiante implements Serializable {
     private String nombre, cuenta;
     private Paradas parada;
     private int edad;
@@ -49,6 +51,6 @@ public class Estudiante {
 
     @Override
     public String toString() {
-        return nombre;
+        return nombre + ", Parada: " + parada;
     }
 }
