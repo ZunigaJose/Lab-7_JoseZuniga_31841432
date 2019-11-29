@@ -7,6 +7,7 @@ package lab.pkg7_josezuniga_31841432;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JColorChooser;
 
 /**
@@ -23,6 +24,7 @@ public class Principal extends javax.swing.JFrame {
         admin.leerBus();
         admin.leerEstudiante();
         admin.leerParada();
+        
     }
 
     /**
@@ -74,10 +76,19 @@ public class Principal extends javax.swing.JFrame {
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jLabel16 = new javax.swing.JLabel();
+        labelestacion = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablita = new javax.swing.JTable();
+        jPanel6 = new javax.swing.JPanel();
+        combListaBus = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jlEstudiantes = new javax.swing.JList<>();
+        jLabel17 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jlBus = new javax.swing.JList<>();
+        jButton4 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuEstudiante = new javax.swing.JMenu();
         menuBus = new javax.swing.JMenu();
@@ -358,7 +369,7 @@ public class Principal extends javax.swing.JFrame {
 
         jButton2.setText("Comenzar");
 
-        jLabel16.setText("jLabel16");
+        labelestacion.setText("jLabel16");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -374,7 +385,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(123, 123, 123)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel16)
+                            .addComponent(labelestacion)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
                                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -392,7 +403,7 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel16)
+                .addComponent(labelestacion)
                 .addContainerGap(298, Short.MAX_VALUE))
         );
 
@@ -423,6 +434,72 @@ public class Principal extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Tabla", jPanel2);
+
+        combListaBus.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combListaBusItemStateChanged(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel16.setText("Estudiantes en Bus");
+
+        jlEstudiantes.setModel(new DefaultListModel());
+        jScrollPane2.setViewportView(jlEstudiantes);
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setText("Estudiantes");
+
+        jlBus.setModel(new DefaultListModel());
+        jScrollPane3.setViewportView(jlBus);
+
+        jButton4.setText("->");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(jButton4))
+                    .addComponent(jLabel17))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(combListaBus, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(259, 259, 259))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel17)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(combListaBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(jButton4)))
+                .addContainerGap(179, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Estudiantes / Bus", jPanel6);
 
         menuEstudiante.setText("Nuevo Estudiante");
         menuEstudiante.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -584,6 +661,10 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_npaCreaActionPerformed
 
+    private void combListaBusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combListaBusItemStateChanged
+        llenarListabus();
+    }//GEN-LAST:event_combListaBusItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -618,12 +699,37 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void llenarEstudiantes() {
+        DefaultListModel modelo = (DefaultListModel) jlEstudiantes.getModel();
+        for (Estudiante estudiante : admin.getEstudiantes()) {
+            modelo.addElement(estudiante);
+        }
+        jlEstudiantes.setModel(modelo);
+    }
+    
+    public void llenarListabus() {
+        DefaultListModel modelo = new DefaultListModel();
+        if (combListaBus.getSelectedIndex() >= 0) {
+            Autobus busito = (Autobus) combListaBus.getSelectedItem();
+            for (Autobus bus : admin.getBuses()) {
+                if (bus.getId() == busito.getId() && bus.getPlaca().equals(busito.getPlaca())) {
+                    for (Estudiante estudiante : bus.getEstudiantes()) {
+                        modelo.addElement(estudiante);
+                    }
+                }
+            }
+            jlBus.setModel(modelo);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton colorBus;
+    private javax.swing.JComboBox<String> combListaBus;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -632,6 +738,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -646,9 +753,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JList<String> jlBus;
+    private javax.swing.JList<String> jlEstudiantes;
+    private javax.swing.JLabel labelestacion;
     private javax.swing.JMenu menuBus;
     private javax.swing.JMenu menuEstudiante;
     private javax.swing.JMenu menuParada;
