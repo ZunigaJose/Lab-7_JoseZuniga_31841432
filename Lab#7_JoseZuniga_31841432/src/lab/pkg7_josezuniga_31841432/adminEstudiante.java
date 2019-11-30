@@ -30,6 +30,7 @@ public class adminEstudiante {
 
     public void setEstu(Estudiante estu) {
         this.estu.add(estu);
+        escribirArchivo();
     }
 
     public File getArchivo() {

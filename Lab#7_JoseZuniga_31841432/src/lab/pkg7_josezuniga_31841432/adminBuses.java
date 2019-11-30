@@ -31,6 +31,7 @@ public class adminBuses {
 
     public void setEstu(Autobus estu) {
         this.bus.add(estu);
+        escribirArchivo();
     }
 
     public File getArchivo() {

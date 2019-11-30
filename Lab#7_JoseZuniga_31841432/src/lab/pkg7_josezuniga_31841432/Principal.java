@@ -24,8 +24,11 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         adminPa.cargarArchivo();
         adminEst.cargarArchivo();
+        adminBus.cargarArchivo();
         llenarEstudiantes();
+        comboBus();
         llenarParada();
+        
     }
 
     /**
@@ -366,6 +369,12 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
+
         jLabel1.setText("Estado");
 
         jButton2.setText("Comenzar");
@@ -455,6 +464,11 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jlBus);
 
         jButton4.setText("->");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -494,11 +508,11 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(jButton4))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(jButton4)))
                 .addContainerGap(179, Short.MAX_VALUE))
         );
 
@@ -587,10 +601,12 @@ public class Principal extends javax.swing.JFrame {
             parada = (Paradas) nesParadas.getSelectedItem();
             try {
                 Estudiante est = new Estudiante(nombre, cuenta, parada, edad);
-                //admin.setEstudiante(est);
+                adminEst.setEstu(est);
                 nesNombre.setText("");
                 nesEdad.setValue(0);
                 nesCuenta.setText("");
+                llenarEstudiantes();
+                llenarParada();
             } catch (Exception e) {
                 
             }
@@ -613,10 +629,11 @@ public class Principal extends javax.swing.JFrame {
             velocidad = Double.parseDouble(nbesVelo.getText());
             color = colorBus.getBackground();
             Autobus bus = new Autobus(id, placa, velocidad, color);
-            //admin.setBus(bus);
+            adminBus.setEstu(bus);
             nBesId.setText("");
             nbesPlaca.setText("");
             nbesVelo.setText("");
+            comboBus();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -672,6 +689,31 @@ public class Principal extends javax.swing.JFrame {
         llenarListabus();
     }//GEN-LAST:event_combListaBusItemStateChanged
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (jlEstudiantes.getSelectedIndex() >= 0) {
+            DefaultListModel modelo = (DefaultListModel)jlEstudiantes.getModel();
+            Estudiante est = (Estudiante) modelo.get(jlEstudiantes.getSelectedIndex());
+            if (combListaBus.getSelectedIndex() == -1) {
+                combListaBus.setSelectedIndex(0);
+            }
+            adminBus.getEstu().get(combListaBus.getSelectedIndex()).setEstudiante(est);
+            jlEstudiantes.remove(jlEstudiantes.getSelectedIndex());
+            adminEst.getEstu().remove(jlEstudiantes.getSelectedIndex());
+            adminBus.escribirArchivo();
+            adminEst.escribirArchivo();
+            int x = combListaBus.getSelectedIndex();
+            combListaBus.setSelectedIndex(-1);
+            combListaBus.setSelectedIndex(x);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        if (jTabbedPane1.getSelectedIndex() == 2) {
+            combListaBus.setSelectedIndex(-1);
+            combListaBus.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_jTabbedPane1StateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -719,13 +761,13 @@ public class Principal extends javax.swing.JFrame {
         DefaultListModel modelo = new DefaultListModel();
         if (combListaBus.getSelectedIndex() >= 0) {
             Autobus busito = (Autobus) combListaBus.getSelectedItem();
-            /*for (Autobus bus : admin.getBuses()) {
+            for (Autobus bus : adminBus.getEstu()) {
             if (bus.getId() == busito.getId() && bus.getPlaca().equals(busito.getPlaca())) {
             for (Estudiante estudiante : bus.getEstudiantes()) {
             modelo.addElement(estudiante);
             }
             }
-            }*/
+            }
             jlBus.setModel(modelo);
         }
     }
@@ -738,6 +780,15 @@ public class Principal extends javax.swing.JFrame {
         modelo.addElement(parada);
         }
         nesParadas.setModel(modelo);
+    }
+    
+    public void comboBus(){
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (Autobus bus : adminBus.getEstu()) {
+            modelo.addElement(bus);
+        }
+        simuBus.setModel(modelo);
+        combListaBus.setModel(modelo);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -801,5 +852,5 @@ public class Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     administrarParadas adminPa = new administrarParadas("./paradas.btx");
     adminEstudiante adminEst = new adminEstudiante("./estu.btx");
-    
+    adminBuses adminBus = new adminBuses("./buses.btx");
 }
