@@ -1,5 +1,7 @@
 package lab.pkg7_josezuniga_31841432;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JProgressBar;
 
 public class Hilo implements Runnable {
@@ -29,7 +31,13 @@ public class Hilo implements Runnable {
                         tiempo = parada.getDistancia() / bus.getVelocidad();
                     }
                     barrita.setMaximum((int)tiempo);
+                    
                 }
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                
             }
         }
     }

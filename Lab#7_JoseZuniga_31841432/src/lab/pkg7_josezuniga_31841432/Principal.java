@@ -378,6 +378,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel1.setText("Estado");
 
         jButton2.setText("Comenzar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         labelestacion.setText("jLabel16");
 
@@ -714,6 +719,14 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (simuBus.getSelectedIndex() >= 0) {
+            disqueHilo = new Hilo(jProgressBar1, (Autobus)simuBus.getSelectedItem());
+            Thread proceso = new Thread(disqueHilo);
+            proceso.start();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -853,4 +866,5 @@ public class Principal extends javax.swing.JFrame {
     administrarParadas adminPa = new administrarParadas("./paradas.btx");
     adminEstudiante adminEst = new adminEstudiante("./estu.btx");
     adminBuses adminBus = new adminBuses("./buses.btx");
+    Hilo disqueHilo;
 }
