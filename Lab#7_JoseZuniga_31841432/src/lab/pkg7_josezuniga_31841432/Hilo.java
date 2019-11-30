@@ -18,20 +18,31 @@ public class Hilo implements Runnable {
     @Override
     public void run() {
         boolean cambio = true;
-        Paradas parada = new Paradas();
+        Paradas parada = new Paradas("Unitec", 0, 0);
+        Paradas p2 = new Paradas();
         double tiempo = 0;
         double dist = 100000000;
         while (continua) {
             if (vive) {
                 if (cambio) {
                     for (Estudiante estudiante : bus.getEstudiantes()) {
-                        if (dist < estudiante.getParada().getDistancia()) {
-                            parada = estudiante.getParada();
+                        System.out.println("hola");
+                        double distanciaEntre = Math.sqrt((Math.pow(estudiante.getParada().getX() - parada.getX(), 2)) + 
+                                Math.pow(estudiante.getParada().getY() - parada.getY(), 2));
+                        if (dist < distanciaEntre) {
+                            p2 = estudiante.getParada();
+                            dist = distanciaEntre;
                         }
-                        tiempo = parada.getDistancia() / bus.getVelocidad();
+                        tiempo = ((Double)distanciaEntre / (Double)bus.getVelocidad()) * 60;
                     }
                     barrita.setMaximum((int)tiempo);
                     
+                }
+                barrita.setValue(barrita.getValue() + 1);
+                if (barrita.getValue() == barrita.getMaximum()) {
+                    cambio = true;
+                    parada = p2;
+                    dist = 10000000;
                 }
             }
             try {
